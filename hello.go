@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "os"
+import "net/http"
 
 func main() {
 	//var nome string = "Gustavo"
@@ -13,7 +14,7 @@ func main() {
 
 	switch comando {
 	case 1:
-		fmt.Println("Monitorando...")
+		iniciarMonitoramento()
 	case 2:
 		fmt.Println("Exibindo Logs...")
 	case 0:
@@ -33,7 +34,6 @@ func main() {
 	// } else {
 	// 	fmt.Println("Não reconheço este comando")
 	// }
-
 }
 
 func exibeIntroducao() {
@@ -55,4 +55,11 @@ func leComando() int {
 	fmt.Scan(&comandoLido)
 
 	return comandoLido
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando...")
+	site := "https://www.alura.com.br"
+	response, _ := http.Get(site)
+	fmt.Println(response.StatusCode)
 }
